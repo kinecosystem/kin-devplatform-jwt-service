@@ -23,38 +23,38 @@ const KEYS = new KeyMap();
 
 export type RegisterRequest = Request & {
 	query: {
-		userId: string;
+		user_id: string;
 	}
 };
 export const getRegisterJWT = function(req: RegisterRequest, res: Response) {
-	if (req.query.userId) {
-		res.status(200).json({ token: sign("register", { user_id: req.query.userId }) });
+	if (req.query.user_id) {
+		res.status(200).json({ jwt: sign("register", { user_id: req.query.user_id }) });
 	} else {
-		res.status(400).send({ error: "'userId' query param is missing" });
+		res.status(400).send({ error: "'user_id' query param is missing" });
 	}
 } as any as RequestHandler;
 
 export type SpendRequest = Request & {
 	query: {
-		offerId: string;
+		offer_id: string;
 	}
 };
 export const getSpendJWT = function(req: SpendRequest, res: Response) {
-	if (req.query.offerId) {
+	if (req.query.offer_id) {
 		let offer;
 		CONFIG.offers.forEach(item => {
-			if (item.id === req.query.offerId) {
+			if (item.id === req.query.offer_id) {
 				offer = item;
 			}
 		});
 
 		if (offer) {
-			res.status(200).json({ token: sign("spend", randomItem(CONFIG.offers)) });
+			res.status(200).json({ jwt: sign("spend", randomItem(CONFIG.offers)) });
 		} else {
-			res.status(400).send({ error: `cannot find offer with id '${ req.query.offerId }'` });
+			res.status(400).send({ error: `cannot find offer with id '${ req.query.offer_id }'` });
 		}
 	} else {
-		res.status(400).send({ error: "'offerId' query param is missing" });
+		res.status(400).send({ error: "'offer_id' query param is missing" });
 	}
 } as any as RequestHandler;
 
@@ -70,7 +70,7 @@ export type ArbitraryPayloadRequest = Request & {
 };
 export const signArbitraryPayload = function(req: ArbitraryPayloadRequest, res: Response) {
 	if (req.body.subject && req.body.payload) {
-		res.status(200).json({ token: sign(req.body.subject, req.body.payload) });
+		res.status(200).json({ jwt: sign(req.body.subject, req.body.payload) });
 	} else {
 		res.status(400).send({ error: `missing 'subject' and/or 'payload' in request body` });
 	}
