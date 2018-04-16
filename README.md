@@ -13,7 +13,7 @@ These keys are for testing porpuses only.
 
 ### Install
 ```bash
-npm install @kinfoundation/ecosystem-jwt-service
+npm install @kinecosystem/jwt-service
 ```
 
 ### Run
