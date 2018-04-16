@@ -4,7 +4,6 @@ import { LoggerInstance } from "winston";
 import { Request, Response } from "express-serve-static-core";
 
 import { generateId } from "./utils";
-import * as metrics from "./metrics";
 import { getDefaultLogger } from "./logging";
 
 let logger: LoggerInstance;
@@ -13,7 +12,6 @@ export function init(app: express.Express) {
 
 	app.use(requestLogger);
 	app.use(logRequest);
-	app.use(reportMetrics);
 }
 
 declare module "express" {
@@ -66,16 +64,6 @@ export const logRequest = function(req: express.Request, res: express.Response, 
 
 	res.on("finish", () => {
 		req.logger.info(`finished handling request ${ req.id }`, { time: performance.now() - t });
-	});
-
-	next();
-} as express.RequestHandler;
-
-export const reportMetrics = function(req: express.Request, res: express.Response, next: express.NextFunction) {
-	const t = performance.now();
-
-	res.on("finish", () => {
-		metrics.timeRequest(performance.now() - t, req.method, req.route);
 	});
 
 	next();

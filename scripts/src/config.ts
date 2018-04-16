@@ -6,10 +6,6 @@ export type Config = {
 	app_id: string;
 	api_key: string;
 	loggers?: LogTarget[];
-	statsd: {
-		host: string;
-		port: number;
-	};
 	private_keys: {
 		[name: string]: {
 			algorithm: string;

@@ -7,10 +7,6 @@
 		"type": "console",
 		"format": "pretty-json"
 	}],
-	"statsd": {
-		"host": "localhost",
-		"port": 8125
-	},
 	"private_keys": {
 		"default": {
 			"algorithm": "RS512",
