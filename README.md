@@ -81,7 +81,7 @@ Result:
 
 #### sign
 Returns a token for a posted arbitrary payload (and subject):  
-`POST '{"subject":"a subject", "payload":{"key1":"value1"}' SERVICE_URL/sign`
+`POST '{"subject":"a subject", "payload":{"key1":"value1"}}' SERVICE_URL/sign`
 
 Result:
 ```json
