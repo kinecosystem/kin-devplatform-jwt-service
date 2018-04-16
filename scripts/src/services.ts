@@ -58,8 +58,22 @@ export const getSpendJWT = function(req: SpendRequest, res: Response) {
 	}
 } as any as RequestHandler;
 
-export const getOffers = function(req: RegisterRequest, res: Response) {
+export const getOffers = function(req: Request, res: Response) {
 	res.status(200).send({ offers: CONFIG.offers });
+} as any as RequestHandler;
+
+export type ArbitraryPayloadRequest = Request & {
+	body: {
+		subject: string;
+		payload: { [key: string]: any };
+	}
+};
+export const signArbitraryPayload = function(req: ArbitraryPayloadRequest, res: Response) {
+	if (req.body.subject && req.body.payload) {
+		res.status(200).json({ token: sign(req.body.subject, req.body.payload) });
+	} else {
+		res.status(400).send({ error: `missing 'subject' and/or 'payload' in request body` });
+	}
 } as any as RequestHandler;
 
 function sign(subject: string, payload: any) {
