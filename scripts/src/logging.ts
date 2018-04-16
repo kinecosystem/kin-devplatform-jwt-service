@@ -45,7 +45,7 @@ function createTarget(target: LogTarget): winston.TransportInstance {
 		timestamp: target.timestamp,
 	};
 
-	if (target.format === "json" || target.format === "pretty-json") {
+	if (["json", "pretty-json"].includes(target.format!)) {
 		options.json = true;
 	}
 

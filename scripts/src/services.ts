@@ -26,6 +26,7 @@ export type RegisterRequest = Request & {
 		user_id: string;
 	}
 };
+
 export const getRegisterJWT = function(req: RegisterRequest, res: Response) {
 	if (req.query.user_id) {
 		res.status(200).json({ jwt: sign("register", { user_id: req.query.user_id }) });
@@ -39,6 +40,7 @@ export type SpendRequest = Request & {
 		offer_id: string;
 	}
 };
+
 export const getSpendJWT = function(req: SpendRequest, res: Response) {
 	if (req.query.offer_id) {
 		let offer;
@@ -68,6 +70,7 @@ export type ArbitraryPayloadRequest = Request & {
 		payload: { [key: string]: any };
 	}
 };
+
 export const signArbitraryPayload = function(req: ArbitraryPayloadRequest, res: Response) {
 	if (req.body.subject && req.body.payload) {
 		res.status(200).json({ jwt: sign(req.body.subject, req.body.payload) });

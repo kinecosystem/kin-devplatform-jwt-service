@@ -2,7 +2,7 @@ import { path } from "./utils";
 import { LogTarget } from "./logging";
 
 export type Config = {
-	port?: number;
+	port: number;
 	app_id: string;
 	api_key: string;
 	loggers?: LogTarget[];

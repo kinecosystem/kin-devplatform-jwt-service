@@ -11,7 +11,6 @@ const config = getConfig();
 
 function createApp(): express.Express {
 	const app = express();
-	app.set("port", config.port);
 
 	const bodyParser = require("body-parser");
 	app.use(bodyParser.json());
