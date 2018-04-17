@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import * as http from "http";
 
 import { init as initConfig } from "./config";

@@ -13,12 +13,12 @@ These keys are for testing porpuses only.
 
 ### Install
 ```bash
-npm install @kinecosystem/jwt-service
+npm install -g @kinecosystem/jwt-service
 ```
 
 ### Run
 ```bash
-npm run start
+jwt-service
 ```
 
 ### Using the service
