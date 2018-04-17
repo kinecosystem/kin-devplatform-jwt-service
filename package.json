@@ -5,6 +5,10 @@
   "main": "scripts/bin/index.js",
   "scripts": {
     "start": "node ./scripts/bin/index.js",
+    "clean": "rimraf scripts/bin",
+    "transpile": "tsc -p scripts",
+    "lint": "./node_modules/.bin/tslint -p ./scripts",
+    "build": "npm-run-all clean lint transpile",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,6 +28,8 @@
     "hot-shots": "^5.3.0",
     "jsonwebtoken": "^8.2.1",
     "moment": "^2.22.1",
+    "npm-run-all": "^4.1.2",
+    "rimraf": "^2.6.2",
     "typescript": "^2.8.1",
     "winston": "^2.4.1"
   },
