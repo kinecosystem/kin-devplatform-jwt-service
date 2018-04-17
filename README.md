@@ -93,7 +93,7 @@ Result:
 ```
 
 ### Configuration
-The service can be configured by changing the [config/default.json](blob/master/config/default.json) file.
+The service can be configured by changing the [config/default.json](config/default.json) file.
 
 The most important of which are the:
 * `port`: on which port this service will be bound to
