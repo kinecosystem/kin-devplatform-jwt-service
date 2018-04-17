@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A helper service for the creation of JWT needed to work with the Kin ecosystem SDKs",
   "main": "scripts/bin/index.js",
+  "types": "scripts/bin/index.d.ts",
   "scripts": {
     "start": "node ./scripts/bin/index.js",
     "clean": "rimraf scripts/bin",
