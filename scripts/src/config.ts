@@ -4,7 +4,6 @@ import { LogTarget } from "./logging";
 export type Config = {
 	port: number;
 	app_id: string;
-	api_key: string;
 	loggers?: LogTarget[];
 	private_keys: {
 		[name: string]: {
