@@ -51,7 +51,7 @@ export const getSpendJWT = function(req: SpendRequest, res: Response) {
 		});
 
 		if (offer) {
-			res.status(200).json({ jwt: sign("spend", randomItem(CONFIG.offers)) });
+			res.status(200).json({ jwt: sign("spend", { offer: randomItem(CONFIG.offers) } ) });
 		} else {
 			res.status(400).send({ error: `cannot find offer with id '${ req.query.offer_id }'` });
 		}
@@ -83,14 +83,18 @@ function sign(subject: string, payload: any) {
 	const signWith = KEYS.random();
 
 	payload = Object.assign({
-		typ: "JWT"
+		iss: getConfig().app_id,
+		exp: moment().add(6, "hours").valueOf(),
+		iat: moment().valueOf(),
+		sub: subject
 	}, payload);
 
 	return jsonwebtoken.sign(payload, signWith.key, {
-		subject,
-		keyid: signWith.id,
-		algorithm: signWith.algorithm,
-		expiresIn: moment().add(6, "hours").valueOf()
+		header: {
+			keyid: signWith.id,
+			alg: signWith.algorithm,
+			typ: "JWT"
+		}
 	});
 }
 

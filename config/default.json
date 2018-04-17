@@ -1,7 +1,6 @@
 {
 	"port": 3002,
 	"app_id": "smpl",
-	"api_key": "A28hNcn2wp77QyaM8kB2C",
 	"loggers": [{
 		"name": "console",
 		"type": "console",
