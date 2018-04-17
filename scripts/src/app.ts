@@ -24,8 +24,9 @@ function createApp(): express.Express {
 export const app = createApp();
 
 app.get("/offers", getOffers);
-app.get("/spend", getSpendJWT);
-app.get("/register", getRegisterJWT);
+app.get("/spend/token", getSpendJWT);
+app.get("/register/token", getRegisterJWT);
+
 app.post("/sign", signArbitraryPayload);
 
 // catch 404

@@ -59,7 +59,7 @@ Result:
 
 #### spend
 Returns a token which can be used to create a spend order:  
-`GET SERVICE_URL/spend?offer_id=offer1`
+`GET SERVICE_URL/spend/token?offer_id=offer1`
 
 Result:
 ```json
@@ -72,7 +72,7 @@ The `offer_id` needs to match one of the offers which returns from the `SERVICE_
 
 #### register
 Returns a token which can be used to register a user:  
-`GET SERVICE_URL/register?user_id=aUserID`
+`GET SERVICE_URL/register/token?user_id=aUserID`
 
 Result:
 ```json
