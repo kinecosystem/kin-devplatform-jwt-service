@@ -1,7 +1,7 @@
 import * as express from "express";
 
 import { getConfig } from "./config";
-import { getRegisterJWT, getSpendJWT, getOffers, signArbitraryPayload } from "./services";
+import { getRegisterJWT, getSpendJWT, getOffers, signArbitraryPayload, validateJWT } from "./services";
 import {
 	notFoundHandler,
 	generalErrorHandler,
@@ -26,6 +26,7 @@ export const app = createApp();
 app.get("/offers", getOffers);
 app.get("/spend/token", getSpendJWT);
 app.get("/register/token", getRegisterJWT);
+app.get("/validate", validateJWT);
 
 app.post("/sign", signArbitraryPayload);
 

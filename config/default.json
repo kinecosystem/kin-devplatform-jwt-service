@@ -12,22 +12,26 @@
 			"file": "keys/smpl-default-priv.pem"
 		}
 	},
+  "public_keys": {
+    "default": "keys/kin-default.pem",
+    "es256_0": "keys/kin-es256_0.pem"
+  },
 	"offers": [{
 		"id": "offer1",
 		"title": "first offer",
-		"amount": 10,
+		"amount": 1,
 		"description": "the 1st test offer",
 		"wallet_address": "GDC6UAWZETQRXDFJHHZS2O7JK2OQ3F5MNOZLHJP4TD7J6MB5Q2NH5YGU"
 	}, {
 		"id": "offer2",
 		"title": "second offer",
-		"amount": 20,
+		"amount": 1,
 		"description": "the 2nd test offer",
 		"wallet_address": "GDC6UAWZETQRXDFJHHZS2O7JK2OQ3F5MNOZLHJP4TD7J6MB5Q2NH5YGU"
 	}, {
 		"id": "offer3",
 		"title": "third offer",
-		"amount": 30,
+		"amount": 1,
 		"description": "the 3rd test offer",
 		"wallet_address": "GDC6UAWZETQRXDFJHHZS2O7JK2OQ3F5MNOZLHJP4TD7J6MB5Q2NH5YGU"
 	}]

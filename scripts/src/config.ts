@@ -11,6 +11,9 @@ export type Config = {
 			file: string;
 		}
 	};
+	public_keys: {
+		[name: string]: string;
+	};
 	offers: Array<{
 		id: string;
 		title: string;

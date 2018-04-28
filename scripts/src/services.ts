@@ -19,7 +19,8 @@ class KeyMap extends Map<string, { algorithm: string; key: Buffer; }> {
 }
 
 const CONFIG = getConfig();
-const KEYS = new KeyMap();
+const PRIVATE_KEYS = new KeyMap();
+const PUBLIC_KEYS = new Map<string, string>();
 
 export type RegisterRequest = Request & {
 	query: {
@@ -79,8 +80,38 @@ export const signArbitraryPayload = function(req: ArbitraryPayloadRequest, res: 
 	}
 } as any as RequestHandler;
 
+export type ValidateRequest = Request & {
+	query: {
+		jwt: string;
+	}
+};
+
+export type JWTContent = {
+	header: {
+		typ: string;
+		alg: string;
+		kid: string;
+	};
+	payload: any;
+	signature: string;
+};
+
+export const validateJWT = function(req: ValidateRequest, res: Response) {
+	const decoded = jsonwebtoken.decode(req.query.jwt, { complete: true }) as JWTContent;
+	const publicKey = PUBLIC_KEYS.get(decoded.header.kid);
+	try {
+		if (!publicKey) {
+			throw new Error(`no key for kid ${decoded.header.kid}`);
+		}
+		jsonwebtoken.verify(req.query.jwt, publicKey); // throws
+		res.status(200).json({ is_valid: true });
+	} catch (e) {
+		res.status(200).json({ is_valid: false, error: e });
+	}
+} as any as RequestHandler;
+
 function sign(subject: string, payload: any) {
-	const signWith = KEYS.random();
+	const signWith = PRIVATE_KEYS.random();
 
 	payload = Object.assign({
 		iss: getConfig().app_id,
@@ -101,6 +132,9 @@ function sign(subject: string, payload: any) {
 // init
 (() => {
 	Object.entries(CONFIG.private_keys).forEach(([ name, key ]) => {
-		KEYS.set(name, { algorithm: key.algorithm, key: readFileSync(path(key.file)) });
+		PRIVATE_KEYS.set(name, { algorithm: key.algorithm, key: readFileSync(path(key.file)) });
+	});
+	Object.entries(CONFIG.public_keys).forEach(([ name, key ]) => {
+		PUBLIC_KEYS.set(name, readFileSync(path(key), "utf-8"));
 	});
 })();
