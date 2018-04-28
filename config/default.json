@@ -8,8 +8,8 @@
 	}],
 	"private_keys": {
 		"default": {
-			"algorithm": "RS512",
-			"file": "keys/jwt_private_key.pem"
+			"algorithm": "ES256",
+			"file": "keys/smpl-default-priv.pem"
 		}
 	},
 	"offers": [{
