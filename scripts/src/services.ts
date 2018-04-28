@@ -51,7 +51,7 @@ export const getSpendJWT = function(req: SpendRequest, res: Response) {
 		});
 
 		if (offer) {
-			res.status(200).json({ jwt: sign("spend", { offer: randomItem(CONFIG.offers) } ) });
+			res.status(200).json({ jwt: sign("spend", { offer } ) });
 		} else {
 			res.status(400).send({ error: `cannot find offer with id '${ req.query.offer_id }'` });
 		}
@@ -91,7 +91,7 @@ function sign(subject: string, payload: any) {
 
 	return jsonwebtoken.sign(payload, signWith.key, {
 		header: {
-			keyid: signWith.id,
+			kid: signWith.id,
 			alg: signWith.algorithm,
 			typ: "JWT"
 		}
