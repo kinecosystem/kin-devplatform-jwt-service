@@ -14,7 +14,8 @@
 	},
   "public_keys": {
     "default": "keys/kin-default.pem",
-    "es256_0": "keys/kin-es256_0.pem"
+    "es256_0": "keys/kin-es256_0.pem",
+    "rs512_0": "keys/kin-rs512_0.pem"
   },
 	"offers": [{
 		"id": "offer1",
