@@ -1,0 +1,9 @@
+examples/
+.git*
+.idea/
+.tags
+**/*.js
+__pycache__/
+Dockerfile
+Makefile
+docker-compose.yml

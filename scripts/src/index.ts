@@ -12,7 +12,7 @@ import { ServerError } from "./utils";
 import { app } from "./app";
 
 const server = http.createServer(app);
-server.listen(config.port);
+server.listen(config.port, config.host);
 server.on("error", onError);
 server.on("listening", onListening);
 

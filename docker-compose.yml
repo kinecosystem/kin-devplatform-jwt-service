@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+
+  jwt-service:
+    image: kinecosystem/jwt-service
+    volumes:
+      - .:/opt/app
+    ports:
+      - 3000
+    environment:
+      APP_DEBUG: 'True'
+      APP_PORT: 3000
+      APP_HOST: '0.0.0.0'
+      APP_NAME: 'smpl'
