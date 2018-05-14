@@ -43,14 +43,9 @@ export type EarnRequest = Request & {
 	}
 };
 
-export const getEarnJWT = function(req: SpendRequest, res: Response) {
+export const getEarnJWT = function(req: EarnRequest, res: Response) {
 	if (req.query.offer_id && req.query.user_id) {
-		let offer: any;
-		CONFIG.offers.forEach(item => {
-			if (item.id === req.query.offer_id) {
-				offer = item;
-			}
-		});
+		const offer = getOffer(req.query.offer_id);
 
 		if (offer) {
 			res.status(200).json({ jwt: sign("earn", { offer }) });
@@ -72,15 +67,12 @@ export type SpendRequest = Request & {
 
 export const getSpendJWT = function(req: SpendRequest, res: Response) {
 	if (req.query.offer_id) {
-		let offer;
-		CONFIG.offers.forEach(item => {
-			if (item.id === req.query.offer_id) {
-				offer = item;
-			}
-		});
+		const offer = getOffer(req.query.offer_id);
 
 		if (offer) {
 			res.status(200).json({ jwt: sign("spend", { offer } ) });
+		} else if (offer.type !== "spend") {
+			res.status(400).send({ error: "requested offer is not an spend one" });
 		} else {
 			res.status(400).send({ error: `cannot find offer with id '${ req.query.offer_id }'` });
 		}
@@ -155,6 +147,16 @@ function sign(subject: string, payload: any) {
 			typ: "JWT"
 		}
 	});
+}
+
+function getOffer(id: string): any | null {
+	for (const offer of CONFIG.offers) {
+		if (offer.id === id) {
+			return offer;
+		}
+	}
+
+	return null;
 }
 
 // init
