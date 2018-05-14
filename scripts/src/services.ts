@@ -48,7 +48,10 @@ export const getEarnJWT = function(req: EarnRequest, res: Response) {
 		const offer = getOffer(req.query.offer_id);
 
 		if (offer) {
-			res.status(200).json({ jwt: sign("earn", { offer }) });
+			res.status(200).json({ jwt: sign("earn", {
+				offer,
+				user_id: req.query.user_id
+			}) });
 		} else if (offer.type !== "earn") {
 			res.status(400).send({ error: "requested offer is not an earn one" });
 		} else {
