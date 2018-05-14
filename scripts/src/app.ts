@@ -1,7 +1,13 @@
 import * as express from "express";
 
 import { getConfig } from "./config";
-import { getRegisterJWT, getSpendJWT, getOffers, signArbitraryPayload, validateJWT } from "./services";
+import {
+	getOffers,
+	getEarnJWT,
+	getSpendJWT,
+	validateJWT,
+	getRegisterJWT,
+	signArbitraryPayload } from "./services";
 import {
 	statusHandler,
 	notFoundHandler,
@@ -25,6 +31,7 @@ function createApp(): express.Express {
 export const app = createApp();
 
 app.get("/offers", getOffers);
+app.get("/earn/token", getEarnJWT);
 app.get("/spend/token", getSpendJWT);
 app.get("/register/token", getRegisterJWT);
 app.get("/validate", validateJWT);
