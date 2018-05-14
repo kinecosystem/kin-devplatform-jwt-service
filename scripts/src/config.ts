@@ -21,6 +21,7 @@ export type Config = {
 		amount: number;
 		description: string;
 		wallet_address: string;
+		type: "earn" | "spend";
 	}>;
 };
 

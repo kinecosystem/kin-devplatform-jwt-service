@@ -36,6 +36,34 @@ export const getRegisterJWT = function(req: RegisterRequest, res: Response) {
 	}
 } as any as RequestHandler;
 
+export type EarnRequest = Request & {
+	query: {
+		user_id: string;
+		offer_id: string;
+	}
+};
+
+export const getEarnJWT = function(req: SpendRequest, res: Response) {
+	if (req.query.offer_id && req.query.user_id) {
+		let offer: any;
+		CONFIG.offers.forEach(item => {
+			if (item.id === req.query.offer_id) {
+				offer = item;
+			}
+		});
+
+		if (offer) {
+			res.status(200).json({ jwt: sign("earn", { offer }) });
+		} else if (offer.type !== "earn") {
+			res.status(400).send({ error: "requested offer is not an earn one" });
+		} else {
+			res.status(400).send({ error: `cannot find offer with id '${ req.query.offer_id }'` });
+		}
+	} else {
+		res.status(400).send({ error: "'offer_id' and/or 'user_id' query param is missing" });
+	}
+} as any as RequestHandler;
+
 export type SpendRequest = Request & {
 	query: {
 		offer_id: string;
