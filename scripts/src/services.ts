@@ -47,15 +47,15 @@ export const getEarnJWT = function(req: EarnRequest, res: Response) {
 	if (req.query.offer_id && req.query.user_id) {
 		const offer = getOffer(req.query.offer_id);
 
-		if (offer) {
-			res.status(200).json({ jwt: sign("earn", {
-				offer,
-				user_id: req.query.user_id
-			}) });
+		if (!offer) {
+			res.status(400).send({ error: `cannot find offer with id '${ req.query.offer_id }'` });
 		} else if (offer.type !== "earn") {
 			res.status(400).send({ error: "requested offer is not an earn one" });
 		} else {
-			res.status(400).send({ error: `cannot find offer with id '${ req.query.offer_id }'` });
+			res.status(200).json({ jwt: sign("earn", {
+				offer: { id: offer.id, amount: offer.amount },
+				recipient: { user_id: req.query.user_id, title: offer.title, description: offer.description }
+			}) });
 		}
 	} else {
 		res.status(400).send({ error: "'offer_id' and/or 'user_id' query param is missing" });
@@ -72,12 +72,20 @@ export const getSpendJWT = function(req: SpendRequest, res: Response) {
 	if (req.query.offer_id) {
 		const offer = getOffer(req.query.offer_id);
 
-		if (offer) {
-			res.status(200).json({ jwt: sign("spend", { offer } ) });
+		if (!offer) {
+			res.status(400).send({ error: `cannot find offer with id '${ req.query.offer_id }'` });
 		} else if (offer.type !== "spend") {
 			res.status(400).send({ error: "requested offer is not an spend one" });
 		} else {
-			res.status(400).send({ error: `cannot find offer with id '${ req.query.offer_id }'` });
+			const payload = {
+				offer: { id: offer.id, amount: offer.amount },
+				sender: { title: offer.title, description: offer.description }
+			};
+			if (req.query.user_id) {
+				Object.assign(payload.sender, { user_id: req.query.user_id });
+			}
+
+			res.status(200).json({ jwt: sign("spend", payload) });
 		}
 	} else {
 		res.status(400).send({ error: "'offer_id' query param is missing" });
