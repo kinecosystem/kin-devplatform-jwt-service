@@ -16,6 +16,16 @@
 	"public_keys": {
 		"default": "keys/kin-default.pem",
 		"es256_0": "keys/kin-es256_0.pem",
+		"es256_1": "keys/kin-es256_1.pem",
+		"es256_2": "keys/kin-es256_2.pem",
+		"es256_3": "keys/kin-es256_3.pem",
+		"es256_4": "keys/kin-es256_4.pem",
+		"es256_5": "keys/kin-es256_5.pem",
+		"es256_6": "keys/kin-es256_6.pem",
+		"es256_7": "keys/kin-es256_7.pem",
+		"es256_8": "keys/kin-es256_8.pem",
+		"es256_9": "keys/kin-es256_9.pem",
+		"es256_10": "keys/kin-es256_10.pem",
 		"rs512_0": "keys/kin-rs512_0.pem"
 	},
 	"offers": [{
