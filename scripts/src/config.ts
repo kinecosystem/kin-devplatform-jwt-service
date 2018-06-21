@@ -23,6 +23,7 @@ export type Config = {
 		wallet_address: string;
 		type: "earn" | "spend";
 	}>;
+	marketplace_service: string | null;
 };
 
 let config: Config;
@@ -32,6 +33,7 @@ export function init(filePath: string): Config {
 	config.app_id = process.env.APP_NAME || config.app_id;
 	config.port = parseInt(process.env.APP_PORT || "", 10) || config.port;
 	config.host = process.env.APP_HOST || config.host;
+	config.marketplace_service = process.env.APP_MARKETPLACE_SERVICE || config.marketplace_service;
 
 	// override values with env vars
 	return config;

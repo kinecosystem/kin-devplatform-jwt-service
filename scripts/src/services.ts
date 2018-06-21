@@ -1,8 +1,10 @@
 import * as moment from "moment";
 import { readFileSync } from "fs";
 import * as jsonwebtoken from "jsonwebtoken";
+import * as axios from "axios";
 import { Request, Response, RequestHandler } from "express";
 
+import { getDefaultLogger } from "./logging";
 import { randomItem, path } from "./utils";
 import { getConfig } from "./config";
 
@@ -52,10 +54,12 @@ export const getEarnJWT = function(req: EarnRequest, res: Response) {
 		} else if (offer.type !== "earn") {
 			res.status(400).send({ error: "requested offer is not an earn one" });
 		} else {
-			res.status(200).json({ jwt: sign("earn", {
-				offer: { id: offer.id, amount: offer.amount },
-				recipient: { user_id: req.query.user_id, title: offer.title, description: offer.description }
-			}) });
+			res.status(200).json({
+				jwt: sign("earn", {
+					offer: { id: offer.id, amount: offer.amount },
+					recipient: { user_id: req.query.user_id, title: offer.title, description: offer.description }
+				})
+			});
 		}
 	} else {
 		res.status(400).send({ error: "'offer_id' and/or 'user_id' query param is missing" });
@@ -127,13 +131,32 @@ export type JWTContent = {
 	signature: string;
 };
 
-export const validateJWT = function(req: ValidateRequest, res: Response) {
-	const decoded = jsonwebtoken.decode(req.query.jwt, { complete: true }) as JWTContent;
-	const publicKey = PUBLIC_KEYS.get(decoded.header.kid);
-	try {
-		if (!publicKey) {
-			throw new Error(`no key for kid ${decoded.header.kid}`);
+async function getPublicKey(kid: string): Promise<string> {
+	let publicKey = PUBLIC_KEYS.get(kid);
+	if (publicKey) {
+		getDefaultLogger().info(`found public key ${kid} locally`);
+	} else if (CONFIG.marketplace_service) {
+		// try to get key from marketplace service
+		const res = await axios.default.get(`${CONFIG.marketplace_service}/v1/config`);
+		for (const key of Object.keys(res.data.jwt_keys)) {
+			PUBLIC_KEYS.set(key, res.data.jwt_keys[key].key);
 		}
+		publicKey = PUBLIC_KEYS.get(kid);
+		if (publicKey) {
+			getDefaultLogger().info(`found public key ${kid} from remote`);
+		}
+	}
+	if (!publicKey) {
+		getDefaultLogger().error(`did not find public key ${kid}`);
+		throw new Error(`no key for kid ${kid}`);
+	}
+	return publicKey;
+}
+
+export const validateJWT = async function(req: ValidateRequest, res: Response) {
+	const decoded = jsonwebtoken.decode(req.query.jwt, { complete: true }) as JWTContent;
+	try {
+		const publicKey = await getPublicKey(decoded.header.kid);
 		jsonwebtoken.verify(req.query.jwt, publicKey); // throws
 		res.status(200).json({ is_valid: true });
 	} catch (e) {
@@ -172,10 +195,10 @@ function getOffer(id: string): any | null {
 
 // init
 (() => {
-	Object.entries(CONFIG.private_keys).forEach(([ name, key ]) => {
+	Object.entries(CONFIG.private_keys).forEach(([name, key]) => {
 		PRIVATE_KEYS.set(name, { algorithm: key.algorithm, key: readFileSync(path(key.file)) });
 	});
-	Object.entries(CONFIG.public_keys).forEach(([ name, key ]) => {
+	Object.entries(CONFIG.public_keys).forEach(([name, key]) => {
 		PUBLIC_KEYS.set(name, readFileSync(path(key), "utf-8"));
 	});
 })();

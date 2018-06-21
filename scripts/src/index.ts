@@ -3,7 +3,7 @@
 import * as http from "http";
 
 import { init as initConfig } from "./config";
-const config = initConfig("config/default.json");
+const config = initConfig(`config/${process.env.APP_CONFIG || "default"}.json`);
 
 import { initLogger } from "./logging";
 const logger = initLogger(...config.loggers!);
