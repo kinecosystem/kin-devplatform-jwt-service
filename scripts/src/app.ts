@@ -5,6 +5,7 @@ import {
 	getOffers,
 	getEarnJWT,
 	getSpendJWT,
+	getPayToUserJWT,
 	validateJWT,
 	getRegisterJWT,
 	signArbitraryPayload } from "./services";
@@ -33,6 +34,7 @@ export const app = createApp();
 app.get("/offers", getOffers);
 app.get("/earn/token", getEarnJWT);
 app.get("/spend/token", getSpendJWT);
+app.get("/paytouser/token", getPayToUserJWT);
 app.get("/register/token", getRegisterJWT);
 app.get("/validate", validateJWT);
 

@@ -57,9 +57,33 @@ Result:
 }
 ```
 
+#### earn
+Returns a token which can be used to create an earn order:  
+`GET SERVICE_URL/earn/token?offer_id=offer1&user_id=aUserID`
+
+Result:
+```json
+{
+    "jwt": "eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCIsImtpZCI6InJzXzUxMl8wIn0.eyJpc3MiOiJ0ZXN0IiwiZXhwIjoxNTMyNjExNjI5NDg1LCJpYXQiOjE1MzI1OTAwMjk0OTIsInN1YiI6ImVhcm4iLCJvZmZlciI6eyJpZCI6Im9mZmVyNCIsImFtb3VudCI6MX0sInJlY2lwaWVudCI6eyJ1c2VyX2lkIjoieW9zIiwidGl0bGUiOiJmb3VydGggb2ZmZXIiLCJkZXNjcmlwdGlvbiI6InRoZSA0dGggdGVzdCBvZmZlciJ9fQ.GGRnkIOa2PmwDws1jmySHC9Amb12QsNKwxMeD__gGjLUi4UNKPqyVIn4T_jsuwfHQGuvTGBQzZW3AV_9O_sb6uDnwE5c2k0ClL5IOdzV48NvjFJg2kT8e_h_IHDoCEMbVu0hU_UiOryjhoKb3pp7zDsymRcwhXNS2Hhzb6BOFb0"
+}
+```
+
 #### spend
 Returns a token which can be used to create a spend order:  
 `GET SERVICE_URL/spend/token?offer_id=offer1`
+
+Result:
+```json
+{
+    "jwt": "eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCIsImtpZCI6ImRlZmF1bHQifQ.eyJ0eXAiOiJKV1QiLCJpZCI6Im9mZmVyMSIsInRpdGxlIjoidGhpcmQgb2ZmZXIiLCJhbW91bnQiOjMwLCJkZXNjcmlwdGlvbiI6InRoZSAzcmQgdGVzdCBvZmZlciIsIndhbGxldF9hZGRyZXNzIjoiR0RDNlVBV1pFVFFSWERGSkhIWlMyTzdKSzJPUTNGNU1OT1pMSEpQNFREN0o2TUI1UTJOSDVZR1UiLCJpYXQiOjE1MjM4NzI4MDYsImV4cCI6MTUyNTQxODI3OTE3MCwic3ViIjoic3BlbmQifQ.d2pEsXzWMr-XXNfnKYL52C-GscRMdIqtrETdpGc2R_TOnLcScXMLFU62HshP3hxZW88vi5JY42MszVApNmCQ_XI9XgVcZcAIYx6Ef63sO-e1WG8_oPRFFLwHf1p8VylArtkvaz2JkWbHVPQuCNdcwf31JUMVSqJZHGk6ez3KaSQ"
+}
+```
+
+The `offer_id` needs to match one of the offers which returns from the `SERVICE_URL/offers` endpoint.
+
+#### pay to user
+Returns a token which can be used to create a pay to user order:  
+`GET SERVICE_URL/paytouser/token?offer_id=offer1&sender_id=user_id1&recipient_id=user_id2`
 
 Result:
 ```json
@@ -92,6 +116,15 @@ Result:
 }
 ```
 
+#### validate
+Validates an input token using the configured public key:  
+`GET SERVICE_URL/validate?jwt=anInputJWT`
+
+Result:
+```json
+{"is_valid":true}
+```
+
 ### Configuration
 The service can be configured by changing the [config/default.json](config/default.json) file.
 
@@ -100,3 +133,4 @@ The most important of which are the:
 * `offers`: the collection of offers which are returned in the `/offer` endpoint and which are signed when calling the 
 `/spend?offer_id={ ID }` endpoint
 * `private_keys`: the keys which will be used for signing the tokens
+* `public_keys`: the public keys which will be used for validate tokens
