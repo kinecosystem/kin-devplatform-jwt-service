@@ -13,14 +13,14 @@
 			"algorithm": "ES256",
 			"file": "keys/test-es256_0-priv.pem"
 		},
-		"rs_512_0":{
+		"rs512_0":{
 			"algorithm": "RS512",
 			"file": "keys/test-rs512_0-priv.pem"
 		}
 	},
 	"public_keys": {
 		"es256_0": "keys/test-es256_0.pem",	
-		"rs_512_0": "keys/test-rs512_0.pem"		
+		"rs512_0": "keys/test-rs512_0.pem"		
 	},
 	"offers": [{
 		"id": "offer1",
