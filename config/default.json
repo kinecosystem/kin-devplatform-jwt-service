@@ -1,7 +1,7 @@
 {
 	"port": 3002,
 	"host": "0.0.0.0",
-	"app_id": "smpl",
+	"app_id": "test",
 	"loggers": [{
 		"name": "console",
 		"type": "console",
@@ -9,25 +9,18 @@
 	}],
 	"marketplace_service": null,
 	"private_keys": {
-		"default": {
+		"es256_0": {
 			"algorithm": "ES256",
-			"file": "keys/smpl-default-priv.pem"
+			"file": "keys/test-es256_0-priv.pem"
+		},
+		"rs512_0":{
+			"algorithm": "RS512",
+			"file": "keys/test-rs512_0-priv.pem"
 		}
 	},
 	"public_keys": {
-		"default": "keys/kin-default.pem",
-		"es256_0": "keys/es256_0.pem",
-		"es256_1": "keys/es256_1.pem",
-		"es256_2": "keys/es256_2.pem",
-		"es256_3": "keys/es256_3.pem",
-		"es256_4": "keys/es256_4.pem",
-		"es256_5": "keys/es256_5.pem",
-		"es256_6": "keys/es256_6.pem",
-		"es256_7": "keys/es256_7.pem",
-		"es256_8": "keys/es256_8.pem",
-		"es256_9": "keys/es256_9.pem",
-		"es256_10": "keys/es256_10.pem",
-		"rs512_0": "keys/kin-rs512_0.pem"
+		"es256_0": "keys/test-es256_0.pem",	
+		"rs512_0": "keys/test-rs512_0.pem"		
 	},
 	"offers": [{
 		"id": "offer1",
@@ -62,5 +55,11 @@
 		"type": "earn",
 		"amount": 1,
 		"description": "the 5th test offer"
+	}, {
+		"id": "offer6",
+		"title": "sixth offer",
+		"type": "pay_to_user",
+		"amount": 1,
+		"description": "the 6th test offer"
 	}]
 }

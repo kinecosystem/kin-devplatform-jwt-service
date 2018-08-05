@@ -79,7 +79,7 @@ export const getSpendJWT = function(req: SpendRequest, res: Response) {
 		if (!offer) {
 			res.status(400).send({ error: `cannot find offer with id '${ req.query.offer_id }'` });
 		} else if (offer.type !== "spend") {
-			res.status(400).send({ error: "requested offer is not an spend one" });
+			res.status(400).send({ error: "requested offer is not a spend one" });
 		} else {
 			const payload = {
 				offer: { id: offer.id, amount: offer.amount },
@@ -93,6 +93,39 @@ export const getSpendJWT = function(req: SpendRequest, res: Response) {
 		}
 	} else {
 		res.status(400).send({ error: "'offer_id' query param is missing" });
+	}
+} as any as RequestHandler;
+
+export type PayToUserRequest = Request & {
+	query: {
+		sender_id: string;
+		recipient_id: string;
+		offer_id: string;
+	}
+};
+
+export const getPayToUserJWT = function(req: PayToUserRequest, res: Response) {
+	if (req.query.offer_id && req.query.recipient_id) {
+		const offer = getOffer(req.query.offer_id);
+
+		if (!offer) {
+			res.status(400).send({ error: `cannot find offer with id '${req.query.offer_id}'` });
+		} else if (offer.type !== "pay_to_user") {
+			res.status(400).send({ error: "requested offer is not a pay to user one" });
+		} else {
+			const payload = {
+				offer: { id: offer.id, amount: offer.amount },
+				sender: { title: offer.title, description: offer.description },
+				recipient: { user_id: req.query.recipient_id, title: offer.title, description: offer.description }
+			};
+			if (req.query.user_id) {
+				Object.assign(payload.sender, { user_id: req.query.user_id });
+			}
+
+			res.status(200).json({ jwt: sign("pay_to_user", payload) });
+		}
+	} else {
+		res.status(400).send({ error: "'offer_id' and/or 'recipient_id' query param is missing" });
 	}
 } as any as RequestHandler;
 
