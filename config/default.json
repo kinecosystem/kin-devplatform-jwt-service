@@ -19,8 +19,16 @@
 		}
 	},
 	"public_keys": {
-		"es256_0": "keys/test-es256_0.pem",	
-		"rs512_0": "keys/test-rs512_0.pem"		
+		"es256_1c008f56-d08c-441f-aa67-d56da6a9488c": "keys/playground_public/es256_1c008f56-d08c-441f-aa67-d56da6a9488c.pem",
+		"es256_2d39d39d-4a0e-4221-9a59-3f945ae9f48e": "keys/playground_public/es256_2d39d39d-4a0e-4221-9a59-3f945ae9f48e.pem",
+		"es256_31bd9616-17b1-40d3-8e50-3f6ff29fed01": "keys/playground_public/es256_31bd9616-17b1-40d3-8e50-3f6ff29fed01.pem",
+		"es256_48e6fb5d-0853-4484-9ed7-ff27a5ad82d1": "keys/playground_public/es256_48e6fb5d-0853-4484-9ed7-ff27a5ad82d1.pem",
+		"es256_279c60b4-5f31-44e2-b423-d4a7bec5de32": "keys/playground_public/es256_279c60b4-5f31-44e2-b423-d4a7bec5de32.pem",
+		"es256_8957d3d4-02ed-4b83-a110-6eb020c5d754": "keys/playground_public/es256_8957d3d4-02ed-4b83-a110-6eb020c5d754.pem",
+		"es256_73048b9e-302f-4db2-b285-55f86a7f2682": "keys/playground_public/es256_73048b9e-302f-4db2-b285-55f86a7f2682.pem",
+		"es256_dbfea1bf-e9ba-4cf3-87aa-bb37a3ec9a26": "keys/playground_public/es256_dbfea1bf-e9ba-4cf3-87aa-bb37a3ec9a26.pem",
+		"es256_f9b0ca02-2f93-4ac2-ada7-dca16bf53eb3": "keys/playground_public/es256_f9b0ca02-2f93-4ac2-ada7-dca16bf53eb3.pem",
+		"es256_f14059af-aa76-43a1-b47c-eb173b663f36": "keys/playground_public/es256_f14059af-aa76-43a1-b47c-eb173b663f36.pem"	
 	},
 	"offers": [{
 		"id": "offer1",
