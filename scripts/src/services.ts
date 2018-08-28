@@ -101,6 +101,7 @@ export type PayToUserRequest = Request & {
 		sender_id: string;
 		recipient_id: string;
 		offer_id: string;
+		amount: number;
 	}
 };
 
@@ -120,6 +121,9 @@ export const getPayToUserJWT = function(req: PayToUserRequest, res: Response) {
 			};
 			if (req.query.user_id) {
 				Object.assign(payload.sender, { user_id: req.query.user_id });
+			}
+			if (req.query.amount) {
+				Object.assign(payload.offer, { amount: req.query.amount });
 			}
 
 			res.status(200).json({ jwt: sign("pay_to_user", payload) });
