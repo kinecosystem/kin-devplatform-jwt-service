@@ -1,0 +1,73 @@
+{
+	"port": 3002,
+	"host": "0.0.0.0",
+	"app_id": "test",
+	"loggers": [{
+		"name": "console",
+		"type": "console",
+		"format": "pretty-json"
+	}],
+	"marketplace_service": null,
+	"private_keys": {
+		"es256_0": {
+			"algorithm": "ES256",
+			"file": "keys/test-es256_0-priv.pem"
+		},
+		"rs512_0":{
+			"algorithm": "RS512",
+			"file": "keys/test-rs512_0-priv.pem"
+		}
+	},
+	"public_keys": {
+		"es256_1AA5716D-F10D-4104-BFBE-A54D0D8EF342": "keys/production_public/es256_1AA5716D-F10D-4104-BFBE-A54D0D8EF342.pem",
+		"es256_72E23B9D-6404-4101-801A-7A89EF3B7034": "keys/production_public/es256_72E23B9D-6404-4101-801A-7A89EF3B7034.pem",
+		"es256_93E095EB-ADE6-4294-8B64-E7227AC96B38": "keys/production_public/es256_93E095EB-ADE6-4294-8B64-E7227AC96B38.pem",
+		"es256_304E9D84-A37A-40D3-B9BF-52C1655BD849": "keys/production_public/es256_304E9D84-A37A-40D3-B9BF-52C1655BD849.pem",
+		"es256_347D3A93-1B15-45F7-895C-55C017A1986A": "keys/production_public/es256_347D3A93-1B15-45F7-895C-55C017A1986A.pem",
+		"es256_0537F1F1-9469-40B5-A6AF-8FB1DE3EA19B": "keys/production_public/es256_0537F1F1-9469-40B5-A6AF-8FB1DE3EA19B.pem",
+		"es256_789661C9-830A-420A-9A86-F88B437F29BA": "keys/production_public/es256_789661C9-830A-420A-9A86-F88B437F29BA.pem",
+		"es256_A9A21033-6BE6-494B-8858-D66AAF8902ED": "keys/production_public/es256_A9A21033-6BE6-494B-8858-D66AAF8902ED.pem",
+		"es256_B7FACECF-A11D-4DF1-8CF8-6E6E410F43AC": "keys/production_public/es256_B7FACECF-A11D-4DF1-8CF8-6E6E410F43AC.pem",
+		"es256_BC50F8AC-23D9-47BC-AE63-F376E6C55D2B": "keys/production_public/es256_BC50F8AC-23D9-47BC-AE63-F376E6C55D2B.pem"
+	},
+	"offers": [{
+		"id": "offer1",
+		"title": "first offer",
+		"type": "spend",
+		"amount": 1,
+		"description": "the 1st test offer",
+		"wallet_address": "GDC6UAWZETQRXDFJHHZS2O7JK2OQ3F5MNOZLHJP4TD7J6MB5Q2NH5YGU"
+	}, {
+		"id": "offer2",
+		"title": "second offer",
+		"type": "spend",
+		"amount": 1,
+		"description": "the 2nd test offer",
+		"wallet_address": "GDC6UAWZETQRXDFJHHZS2O7JK2OQ3F5MNOZLHJP4TD7J6MB5Q2NH5YGU"
+	}, {
+		"id": "offer3",
+		"title": "third offer",
+		"type": "spend",
+		"amount": 1,
+		"description": "the 3rd test offer",
+		"wallet_address": "GDC6UAWZETQRXDFJHHZS2O7JK2OQ3F5MNOZLHJP4TD7J6MB5Q2NH5YGU"
+	}, {
+		"id": "offer4",
+		"title": "fourth offer",
+		"type": "earn",
+		"amount": 1,
+		"description": "the 4th test offer"
+	}, {
+		"id": "offer5",
+		"title": "fifth offer",
+		"type": "earn",
+		"amount": 1,
+		"description": "the 5th test offer"
+	}, {
+		"id": "offer6",
+		"title": "sixth offer",
+		"type": "pay_to_user",
+		"amount": 1,
+		"description": "the 6th test offer"
+	}]
+}
