@@ -19,16 +19,16 @@
 		}
 	},
 	"public_keys": {
-		"es256_1c008f56-d08c-441f-aa67-d56da6a9488c": "keys/playground_public/es256_1c008f56-d08c-441f-aa67-d56da6a9488c.pem",
-		"es256_2d39d39d-4a0e-4221-9a59-3f945ae9f48e": "keys/playground_public/es256_2d39d39d-4a0e-4221-9a59-3f945ae9f48e.pem",
-		"es256_31bd9616-17b1-40d3-8e50-3f6ff29fed01": "keys/playground_public/es256_31bd9616-17b1-40d3-8e50-3f6ff29fed01.pem",
-		"es256_48e6fb5d-0853-4484-9ed7-ff27a5ad82d1": "keys/playground_public/es256_48e6fb5d-0853-4484-9ed7-ff27a5ad82d1.pem",
-		"es256_279c60b4-5f31-44e2-b423-d4a7bec5de32": "keys/playground_public/es256_279c60b4-5f31-44e2-b423-d4a7bec5de32.pem",
-		"es256_8957d3d4-02ed-4b83-a110-6eb020c5d754": "keys/playground_public/es256_8957d3d4-02ed-4b83-a110-6eb020c5d754.pem",
-		"es256_73048b9e-302f-4db2-b285-55f86a7f2682": "keys/playground_public/es256_73048b9e-302f-4db2-b285-55f86a7f2682.pem",
-		"es256_dbfea1bf-e9ba-4cf3-87aa-bb37a3ec9a26": "keys/playground_public/es256_dbfea1bf-e9ba-4cf3-87aa-bb37a3ec9a26.pem",
-		"es256_f9b0ca02-2f93-4ac2-ada7-dca16bf53eb3": "keys/playground_public/es256_f9b0ca02-2f93-4ac2-ada7-dca16bf53eb3.pem",
-		"es256_f14059af-aa76-43a1-b47c-eb173b663f36": "keys/playground_public/es256_f14059af-aa76-43a1-b47c-eb173b663f36.pem"	
+		"es256_1AA5716D-F10D-4104-BFBE-A54D0D8EF342": "keys/production/es256_1AA5716D-F10D-4104-BFBE-A54D0D8EF342.pem",
+		"es256_72E23B9D-6404-4101-801A-7A89EF3B7034": "keys/production/es256_72E23B9D-6404-4101-801A-7A89EF3B7034.pem",
+		"es256_93E095EB-ADE6-4294-8B64-E7227AC96B38": "keys/production/es256_93E095EB-ADE6-4294-8B64-E7227AC96B38.pem",
+		"es256_304E9D84-A37A-40D3-B9BF-52C1655BD849": "keys/production/es256_304E9D84-A37A-40D3-B9BF-52C1655BD849.pem",
+		"es256_347D3A93-1B15-45F7-895C-55C017A1986A": "keys/production/es256_347D3A93-1B15-45F7-895C-55C017A1986A.pem",
+		"es256_0537F1F1-9469-40B5-A6AF-8FB1DE3EA19B": "keys/production/es256_0537F1F1-9469-40B5-A6AF-8FB1DE3EA19B.pem",
+		"es256_789661C9-830A-420A-9A86-F88B437F29BA": "keys/production/es256_789661C9-830A-420A-9A86-F88B437F29BA.pem",
+		"es256_A9A21033-6BE6-494B-8858-D66AAF8902ED": "keys/production/es256_A9A21033-6BE6-494B-8858-D66AAF8902ED.pem",
+		"es256_B7FACECF-A11D-4DF1-8CF8-6E6E410F43AC": "keys/production/es256_B7FACECF-A11D-4DF1-8CF8-6E6E410F43AC.pem",
+		"es256_BC50F8AC-23D9-47BC-AE63-F376E6C55D2B": "keys/production/es256_BC50F8AC-23D9-47BC-AE63-F376E6C55D2B.pem"
 	},
 	"offers": [{
 		"id": "offer1",
