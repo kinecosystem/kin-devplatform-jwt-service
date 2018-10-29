@@ -2,6 +2,10 @@ examples/
 .git*
 .idea/
 .tags
+tags
+.vscode
+create_keys.sh
+node_modules/
 **/*.js
 __pycache__/
 Dockerfile
